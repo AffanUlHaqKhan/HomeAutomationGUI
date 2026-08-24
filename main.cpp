@@ -11,6 +11,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setApplicationName(QStringLiteral("HomeAuto"));
     app.setOrganizationName(QStringLiteral("HomeAuto"));
+#ifdef APP_VERSION
+    app.setApplicationVersion(QStringLiteral(APP_VERSION));
+#endif
 
     // Basic style is fully customizable (lets our Theme drive everything).
     QQuickStyle::setStyle(QStringLiteral("Basic"));

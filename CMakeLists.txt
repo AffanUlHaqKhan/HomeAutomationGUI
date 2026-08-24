@@ -54,3 +54,17 @@ target_link_libraries(appHomeAuto PRIVATE
     Qt6::Qml
     Qt6::QuickControls2
 )
+
+# --- Deployment (Yocto / OSTree image) --------------------------------------
+# See docs/ota-integration.md.
+include(GNUInstallDirs)
+
+# Reported to the OTA server in every device heartbeat.
+target_compile_definitions(appHomeAuto PRIVATE APP_VERSION="${PROJECT_VERSION}")
+
+# qt_add_qml_module compiles the QML and icons into the binary's resources
+# (main.cpp loads qrc:/HomeAuto/qml/Main.qml), so the executable is the only
+# artifact that needs installing.
+install(TARGETS appHomeAuto
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)

@@ -111,3 +111,11 @@ QT_GUI/
 ## Connecting real hardware
 
 Replace the simulation in each model's timer `tick()` with reads from your transport (e.g. MQTT, Modbus, GPIO, REST), and route the `Q_INVOKABLE` setters (`setOn`, `start`, `setDuration`, …) to actuator commands.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+Covers this repository's own code. Qt itself is licensed separately (LGPLv3 or commercial);
+shipping this app on a device has obligations of its own — see `DECISIONS.md` D17 in the OTA
+platform workspace.
