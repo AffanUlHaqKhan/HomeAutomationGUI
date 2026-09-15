@@ -40,7 +40,7 @@ QtObject {
     // Empty means "the platform's default UI font", which is Segoe UI on
     // Windows and DejaVu Sans on the device image -- so both look right
     // without naming a family that only exists on one of them.
-    readonly property string fontFamily: ""
+    readonly property string fontFamily: "Segoe UI"
     readonly property int fontTiny:      11
     readonly property int fontSmall:     13
     readonly property int fontBody:      15
