@@ -32,7 +32,15 @@ QtObject {
     readonly property int pagePadding:   28
 
     // Typography
-    readonly property string fontFamily: "Segoe UI"
+    // "Segoe UI" exists only on Windows dev machines. An unmatched family is
+    // normally harmless -- Qt substitutes the default -- but on a minimal
+    // embedded rootfs with no font files at all there is nothing to fall back
+    // to and every glyph renders as a tofu box. Resolve against what is really
+    // installed; "" means "whatever Qt picks".
+    // Empty means "the platform's default UI font", which is Segoe UI on
+    // Windows and DejaVu Sans on the device image -- so both look right
+    // without naming a family that only exists on one of them.
+    readonly property string fontFamily: ""
     readonly property int fontTiny:      11
     readonly property int fontSmall:     13
     readonly property int fontBody:      15

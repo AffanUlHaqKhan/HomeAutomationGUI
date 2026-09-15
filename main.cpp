@@ -20,6 +20,15 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
+    // qt_standard_project_setup(REQUIRES 6.4) keeps the pre-6.5 QML resource
+    // prefix "/", so this module's generated qmldir lands at :/HomeAuto/qmldir.
+    // The engine's built-in resource import paths are only :/qt/qml and
+    // :/qt-project.org/imports, so "import HomeAuto" resolves to nothing and
+    // every type in it fails with "<Type> is not a type" -- reported against
+    // whichever one the compiler reaches first, which is why the line number
+    // moves between runs. Add the resource root so the qmldir is found.
+    engine.addImportPath(QStringLiteral(":/"));
+
     QObject::connect(
         &engine, &QQmlApplicationEngine::objectCreationFailed,
         &app, []() { QCoreApplication::exit(-1); },
